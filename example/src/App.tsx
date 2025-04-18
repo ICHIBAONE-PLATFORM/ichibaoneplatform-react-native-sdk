@@ -1,18 +1,34 @@
-import { Text, View, StyleSheet } from 'react-native';
 import {
+  getDeviceToken,
   getName,
   getVersion,
-  multiply,
+  handleForegroundNotification,
+  initialize,
+  registerForRemoteNotifications,
 } from 'ichibaoneplatform-react-native-sdk';
-
-const result = multiply(3, 7);
+import { useEffect, useState } from 'react';
+import { Button, StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
+  const [deviceToken, setDeviceToken] = useState<string | null>(null);
+  useEffect(() => {
+    initialize();
+    registerForRemoteNotifications();
+    handleForegroundNotification(true);
+  }, []);
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
       <Text>Result: {getName()}</Text>
       <Text>Result: {getVersion()}</Text>
+      <Text>Result: {deviceToken}</Text>
+      <Button
+        title="Initialize"
+        onPress={() => {
+          registerForRemoteNotifications();
+          const token = getDeviceToken();
+          setDeviceToken(token);
+        }}
+      />
     </View>
   );
 }

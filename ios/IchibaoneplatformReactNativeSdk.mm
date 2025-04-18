@@ -6,18 +6,28 @@ RCT_EXPORT_MODULE()
 
 static IchibaoneplatformReactNativeSdkImpl *ichibaoneplatformReactNativeSdkImpl = [IchibaoneplatformReactNativeSdkImpl new];
 
-- (NSNumber *)multiply:(double)a b:(double)b {
-    NSNumber *result = @(a * b);
-
-    return result;
-}
-
 - (NSString *) getName {
   return [ichibaoneplatformReactNativeSdkImpl getName];
 }
 
 - (NSString *) getVersion {
   return [ichibaoneplatformReactNativeSdkImpl getVersion];
+}
+
+- (void) initialize {
+  [ichibaoneplatformReactNativeSdkImpl initialize];
+}
+
+- (void) registerForRemoteNotifications {
+  [ichibaoneplatformReactNativeSdkImpl registerForRemoteNotifications];
+}
+
+- (NSString *) getDeviceToken {
+  return [ichibaoneplatformReactNativeSdkImpl getDeviceToken];
+}
+
+- (void) handleForegroundNotification:(BOOL)value {
+  [ichibaoneplatformReactNativeSdkImpl handleForegroundNotificationWithValue:value];
 }
 
 - (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:

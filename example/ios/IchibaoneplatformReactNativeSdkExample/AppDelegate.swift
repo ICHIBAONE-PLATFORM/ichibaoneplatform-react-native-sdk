@@ -2,6 +2,7 @@ import UIKit
 import React
 import React_RCTAppDelegate
 import ReactAppDependencyProvider
+import ichibaoneplatform_ios_sdk
 
 @main
 class AppDelegate: RCTAppDelegate {
@@ -26,5 +27,15 @@ class AppDelegate: RCTAppDelegate {
 #else
     Bundle.main.url(forResource: "main", withExtension: "jsbundle")
 #endif
+  }
+  
+  override func application(_ application: UIApplication,
+                   didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+      PushNotificationManager.shared.application(application,didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
+  }
+
+  override func application(_ application: UIApplication,
+                   didFailToRegisterForRemoteNotificationsWithError error: Error) {
+      PushNotificationManager.shared.application(application,didFailToRegisterForRemoteNotificationsWithError: error)
   }
 }

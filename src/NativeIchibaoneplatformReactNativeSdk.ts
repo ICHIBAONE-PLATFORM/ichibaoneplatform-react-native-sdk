@@ -2,9 +2,14 @@ import type { TurboModule } from 'react-native';
 import { TurboModuleRegistry } from 'react-native';
 
 export interface Spec extends TurboModule {
-  multiply(a: number, b: number): number;
   getName(): string;
   getVersion(): string;
+  initialize(): void;
+  registerForRemoteNotifications(): void;
+  getDeviceToken(): string;
+  handleForegroundNotification(value: boolean): void;
 }
 
-export default TurboModuleRegistry.getEnforcing<Spec>('IchibaoneplatformReactNativeSdk');
+export default TurboModuleRegistry.getEnforcing<Spec>(
+  'IchibaoneplatformReactNativeSdk'
+);

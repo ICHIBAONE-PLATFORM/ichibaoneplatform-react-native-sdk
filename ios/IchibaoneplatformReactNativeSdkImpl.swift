@@ -26,4 +26,9 @@ public class IchibaoneplatformReactNativeSdkImpl: NSObject {
   public func getDeviceToken() -> String? {
     return PushNotificationManager.shared.getDeviceToken()
   }
+  
+  @objc
+  public func handleForegroundNotification(value: Bool) {
+    PushNotificationManager.shared.handleForegroundNotification = value
+  }
 }
