@@ -23,3 +23,11 @@ export function getDeviceToken(): string {
 export function handleForegroundNotification(value: boolean): void {
   IchibaoneplatformReactNativeSdk.handleForegroundNotification(value);
 }
+
+export function initializeFCM(): void {
+  IchibaoneplatformReactNativeSdk.initializeFCM();
+}
+
+export async function getFCMDeviceToken(): Promise<string> {
+  return await IchibaoneplatformReactNativeSdk.getFCMDeviceToken();
+}

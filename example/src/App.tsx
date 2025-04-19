@@ -1,10 +1,8 @@
 import {
-  getDeviceToken,
+  getFCMDeviceToken,
   getName,
   getVersion,
-  handleForegroundNotification,
-  initialize,
-  registerForRemoteNotifications,
+  initializeFCM,
 } from 'ichibaoneplatform-react-native-sdk';
 import { useEffect, useState } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
@@ -12,9 +10,7 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 export default function App() {
   const [deviceToken, setDeviceToken] = useState<string | null>(null);
   useEffect(() => {
-    initialize();
-    registerForRemoteNotifications();
-    handleForegroundNotification(true);
+    initializeFCM();
   }, []);
   return (
     <View style={styles.container}>
@@ -23,9 +19,9 @@ export default function App() {
       <Text>Result: {deviceToken}</Text>
       <Button
         title="Initialize"
-        onPress={() => {
-          registerForRemoteNotifications();
-          const token = getDeviceToken();
+        onPress={async () => {
+          const token = await getFCMDeviceToken();
+          console.log(token);
           setDeviceToken(token);
         }}
       />

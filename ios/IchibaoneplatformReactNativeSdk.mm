@@ -30,6 +30,20 @@ static IchibaoneplatformReactNativeSdkImpl *ichibaoneplatformReactNativeSdkImpl 
   [ichibaoneplatformReactNativeSdkImpl handleForegroundNotificationWithValue:value];
 }
 
+- (void)initializeFCM {
+  [ichibaoneplatformReactNativeSdkImpl initializeFCM];
+}
+
+- (void)getFCMDeviceToken:(nonnull RCTPromiseResolveBlock)resolve reject:(nonnull RCTPromiseRejectBlock)reject {
+  [ichibaoneplatformReactNativeSdkImpl getFCMDeviceTokenWithResolver:^(NSString * _Nullable token) {
+      if (token) {
+        resolve(token);
+      } else {
+        reject(@"no_token", @"FCM token not available", nil);
+      }
+    }];
+}
+
 - (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
     (const facebook::react::ObjCTurboModule::InitParams &)params
 {

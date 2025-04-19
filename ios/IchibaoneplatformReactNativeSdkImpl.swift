@@ -31,4 +31,19 @@ public class IchibaoneplatformReactNativeSdkImpl: NSObject {
   public func handleForegroundNotification(value: Bool) {
     PushNotificationManager.shared.handleForegroundNotification = value
   }
+  
+  @objc
+  public func initializeFCM() {
+    PushNotificationManagerFCM.shared.initialize()
+    PushNotificationManagerFCM.shared.handleForegroundNotification = true
+    PushNotificationManagerFCM.shared.registerForRemotePushNotification()
+  }
+  
+  @objc
+  public func getFCMDeviceToken(withResolver resolve: @escaping (String?) -> Void) {
+    Task {
+      let token = await PushNotificationManagerFCM.shared.getFcmToken()
+      resolve(token)
+    }
+  }
 }
