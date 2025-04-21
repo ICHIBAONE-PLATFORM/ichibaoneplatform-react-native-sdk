@@ -25,7 +25,9 @@ target 'IchibaoneplatformReactNativeSdkExample' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  pod 'ichibaoneplatform-ios-sdk/Core', :git => 'https://github.com/ICHIBAONE-PLATFORM/ichibaoneplatform-ios-sdk', :tag => '0.0.9'
+  pod 'FirebaseCore', :modular_headers => true
+  pod 'GoogleUtilities', :modular_headers => true
+  pod 'FirebaseMessaging', :modular_headers => true
 
 
   # Run Codegen during development for the example app.
@@ -47,4 +49,8 @@ target 'IchibaoneplatformReactNativeSdkExample' do
       end
     end
   end
+end
+
+target 'NotificationImage' do
+  pod 'ichibaoneplatform-ios-sdk/Utils'
 end
